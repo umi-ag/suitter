@@ -1,6 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import WalletProvider from '@/contexts/WalletContext';
+import { WalletKitProvider } from '@/contexts/WalletKitContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <WalletProvider>{children}</WalletProvider>
+        <WalletKitProvider>{children}</WalletKitProvider>
       </body>
     </html>
   );
