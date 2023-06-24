@@ -1,8 +1,9 @@
 module suitter::profile {
-  use std::string::{String};
+  use std::string::{Self, String};
   use sui::object::{Self, UID, ID};
   use sui::clock::{Self, Clock};
-  use sui::tx_context::{TxContext};
+  use sui::tx_context::{Self, TxContext};
+  use sui::transfer::{Self};
 
   const E_NOT_OWNER:u64 = 0;
 
@@ -24,21 +25,16 @@ module suitter::profile {
   }
 
   public fun new(
-    name: String,
-    description: String,
-    website: String,
-    image_url: String,
-    cover_url: String,
     clock: &Clock,
     ctx: &mut TxContext
   ): (Profile, ProfileOwnerCap) {
     let profile = Profile {
       id: object::new(ctx),
-      name: name,
-      description: description,
-      website: website,
-      image_url: image_url,
-      cover_url: cover_url,
+      name: string::utf8(b""),
+      description: string::utf8(b""),
+      website: string::utf8(b""),
+      image_url: string::utf8(b""),
+      cover_url: string::utf8(b""),
       followers_count: 0,
       followings_count: 0,
       created_at: clock::timestamp_ms(clock),
@@ -68,5 +64,21 @@ module suitter::profile {
     profile.website = website;
     profile.image_url = image_url;
     profile.cover_url = cover_url;
+  }
+
+  public fun create(
+    name: String,
+    description: String,
+    website: String,
+    image_url: String,
+    cover_url: String,
+    clock: &Clock,
+    ctx: &mut TxContext
+  ) {
+    let (profile, owner_cap) = new(clock, ctx);
+    update(&owner_cap, &mut profile, name, description, website, image_url, cover_url);
+
+    transfer::public_transfer(owner_cap, tx_context::sender(ctx));
+    transfer::public_share_object(profile);
   }
 }
