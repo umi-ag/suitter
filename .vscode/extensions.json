@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "move.move-analyzer",
+    "bradlc.vscode-tailwindcss",
+    "movebit.sui-move-analyzer",
+    "damirka.move-syntax",
+    "shardulm94.trailing-spaces",
+    "gptutor.gptutor"
+  ]
+}

@@ -1,0 +1,4 @@
+[tasks.'swich:testnet']
+script = '''
+sui client switch --env testnet
+'''
