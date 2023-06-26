@@ -1,4 +1,31 @@
-[tasks.'swich:testnet']
+[tasks.'address']
+script = '''
+sui client addresses
+'''
+
+[tasks.'switch:testnet']
 script = '''
 sui client switch --env testnet
+'''
+
+[tasks.'install:sui']
+script = '''
+cargo install suivm
+suivm install latest
+'''
+
+[tasks.'memo:new']
+script = '''
+PACKAGE=0x824fb4bc1dd21c2030cdf8fc31773e32e3b83ae19bf687a7db437be5fdf46648
+sui client call \
+  --package $PACKAGE \
+  --module hello \
+  --function new \
+  --gas-budget 1000
+'''
+
+[tasks.'publish:sandbox']
+script = '''
+cd contracts/sandbox
+sui client publish --gas-budget=123456789
 '''

@@ -1,4 +1,4 @@
-module sandbox::f_reply {
+module sandbox::g_dof {
     use std::string::{Self, String};
     use std::vector::{Self};
 
@@ -30,6 +30,10 @@ module sandbox::f_reply {
         count_replies: u64,
     }
 
+    struct ReplyPool has key, store {
+        id: UID,
+    }
+
     fun new_post(
         text: vector<u8>,
         clock: &Clock,
@@ -44,7 +48,7 @@ module sandbox::f_reply {
             count_replies: 0,
         };
         df::add(&mut post.id, liked_key(), vec_set::empty<address>());
-        df::add(&mut post.id, repled_key(), vector::empty<ID>());
+        dof::add(&mut post.id, repled_key(), ReplyPool { id: object::new(ctx) });
         post
     }
 
@@ -74,11 +78,10 @@ module sandbox::f_reply {
         ctx: &mut TxContext,
     ) {
         your_post.count_replies = your_post.count_replies + 1;
-        let replied_set: &mut vector<ID> = df::borrow_mut(&mut your_post.id, repled_key());
+        let reply_pool: &mut ReplyPool = dof::borrow_mut(&mut your_post.id, repled_key());
         let my_post = new_post(text, clock, ctx);
         let my_post_id = object::id(&my_post);
-        transfer::public_share_object(my_post);
-        vector::push_back(replied_set, my_post_id);
+        dof::add(&mut reply_pool.id, my_post_id, my_post);
     }
 
     #[test]
