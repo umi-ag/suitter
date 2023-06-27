@@ -1,6 +1,6 @@
 import { TransactionBlock } from "@mysten/sui.js";
 import { useWallet } from "@suiet/wallet-kit";
-import { useState } from "react"
+import { useState } from "react";
 
 export default function Publish(){
     const [result,updateResult] = useState("");
@@ -9,15 +9,15 @@ export default function Publish(){
     const publishModule = async ()=>{
         console.log("you will publish module ");
         try {
-            // const compiledModules = JSON.parse(moduleBytes);      
-            const { modules, dependencies } = JSON.parse(moduleBytes);      
+            // const compiledModules = JSON.parse(moduleBytes);
+            const { modules, dependencies } = JSON.parse(moduleBytes);
             console.log(modules,dependencies);
             const tx = new TransactionBlock();
             // tx.setGasBudget(200000000);
             const updateCap = tx.publish({modules, dependencies})
             tx.transferObjects([updateCap[0]], tx.pure(address));
             const result = await signAndExecuteTransactionBlock({
-                transactionBlock: tx,    
+                transactionBlock: tx,
             });
             console.log(result);
             updateResult(JSON.stringify(result,null,2));
@@ -26,7 +26,7 @@ export default function Publish(){
             console.log(error);
         }
     }
-    
+
     return (
         <>
             <div className="card shadow-xl mt-3">

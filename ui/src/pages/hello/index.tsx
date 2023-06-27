@@ -1,11 +1,11 @@
-import { useWallet } from "@suiet/wallet-kit";
 import { JsonRpcProvider, TransactionBlock } from '@mysten/sui.js';
-import React, { useEffect, useState } from "react";
+import { useWallet } from "@suiet/wallet-kit";
 import Link from 'next/link';
-import { SUI_PACKAGE, SUI_MODULE } from "../config/constants";
-import { Signer } from "../components/Signer";
-import { NftList } from "../components/NftList";
-import { TransacitonLink } from "../utils/links";
+import { useEffect, useState } from "react";
+import { NftList } from "src/components/NftList";
+import { Signer } from "src/components/Signer";
+import { SUI_MODULE, SUI_PACKAGE } from "src/config/constants";
+import { TransacitonLink } from "src/utils/links";
 
 export default function Home() {
 
