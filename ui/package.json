@@ -1,6 +1,6 @@
 {
-  "name": "scaffold-sui",
-  "version": "0.2.0",
+  "name": "suitter",
+  "version": "0.202306.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
