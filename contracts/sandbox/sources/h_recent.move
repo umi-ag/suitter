@@ -66,6 +66,7 @@ module sandbox::h_recent {
         clock: &Clock,
         ctx: &mut TxContext,
     ) {
+        /// create post object
         let post = new_post(text, clock, ctx);
         update_recent_posts(recent_posts, object::id(&post));
         transfer::public_share_object(post);
@@ -89,8 +90,10 @@ module sandbox::h_recent {
     ) {
         your_post.count_replies = your_post.count_replies + 1;
         let reply_pool: &mut ReplyPool = dof::borrow_mut(&mut your_post.id, repled_key());
+        /// create new Post
         let my_post = new_post(text, clock, ctx);
         let my_post_id = object::id(&my_post);
+        /// add post
         dof::add(&mut reply_pool.id, my_post_id, my_post);
     }
 
