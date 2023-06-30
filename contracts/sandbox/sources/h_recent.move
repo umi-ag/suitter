@@ -1,3 +1,4 @@
+/// h_recent Contract
 module sandbox::h_recent {
     use std::string::{Self, String};
     use std::vector::{Self};
@@ -24,6 +25,7 @@ module sandbox::h_recent {
         create_recent_posts(ctx);
     }
 
+    /// Post Object 
     struct Post has key, store {
         id: UID,
         text: String,
@@ -72,6 +74,7 @@ module sandbox::h_recent {
         transfer::public_share_object(post);
     }
 
+    /// like post function
     public entry fun like_post(
         post: &mut Post,
         ctx: &mut TxContext,
@@ -107,6 +110,7 @@ module sandbox::h_recent {
         transfer::public_share_object(recent_posts);
     }
 
+    /// update recent posts method
     fun update_recent_posts(
         recent_posts: &mut RecentPosts,
         post_id: ID,

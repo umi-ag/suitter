@@ -3,6 +3,10 @@ import { SUITTER_RECENT_POSTS_OBJECT_ID } from "src/config/constants";
 import { providerSuiTestnet } from "src/config/sui";
 import { SuitterPost } from '../types';
 
+/**
+ * 最新のPostオブジェクトのIDのリストを取得するメソッド
+ * @returns 
+ */
 export const getRecentPostIdList = async (): Promise<ObjectId> => {
   const suiObject = await providerSuiTestnet().getObject({
     id: SUITTER_RECENT_POSTS_OBJECT_ID,
@@ -11,11 +15,20 @@ export const getRecentPostIdList = async (): Promise<ObjectId> => {
       showType: true,
     },
   });
+  // postsオブジェクトを配列で取得する。
   const { posts: postIdList } = getObjectFields(suiObject);
   return postIdList
 };
 
-export const getRecentPostObjectList = async (postIdList: ObjectId[]): Promise<SuitterPost> => {
+/**
+ * 最新の投稿を配列で取得するためのメソッド
+ * @param postIdList PostオブジェクトのIDリスト
+ * @returns 
+ */
+export const getRecentPostObjectList = async (
+  postIdList: ObjectId[]
+): Promise<SuitterPost> => {
+  // オブジェクトIDに紐づくPostオブジェクトを一括で取得するためのメソッド
   const suiObjectList = await providerSuiTestnet().multiGetObjects({
     ids: postIdList,
     options: {
@@ -23,6 +36,7 @@ export const getRecentPostObjectList = async (postIdList: ObjectId[]): Promise<S
       showType: true,
     },
   });
+  
   return suiObjectList.map(obj => ({
     ...getObjectFields(obj),
     id:  getObjectId(obj),
