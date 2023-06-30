@@ -1,6 +1,7 @@
 ---
 marp: true
 theme: gaia
+paginate: true
 # header: "**Qiita** __Marp samples__"
 # footer: "by fuyutarow＠gmail.com"
 ---
@@ -9,9 +10,66 @@ theme: gaia
 
 Presented by Umi Protocol & 3RD GEAR
 
+- Fuyu
+- Wasabi
+- Imataka
+- Yusei
+- Johnny
+- Issei
+
+<!-- page_number: true -->
+
+---
+
+# アジェンダ
+
+- Suiのモチベーション (10-15m)
+- 環境構築
+  - Sui CLI
+- Suitter
+  - ライブコーディング-
+  - Suiの開発者体験
+
+---
+
+- dropなしから
+- transfer なし
+
+---
+
+# 環境構築
+
+- Install sui CLI
+- vs-code plugins
+- cargo install cargo-make
+
+---
+
+## Install sui CLI
+
+```sh
+curl https://sh.rustup.rs -sSf | sh
+source $HOME/.cargo/env
+cargo install suivm
+suivm install latest
+suivm use latest
+```
+
+## Sui バイナリ配布
+
+- linux: https://github.com/MystenLabs/sui/releases
+- mac:
+  https://drive.google.com/drive/folders/1XDjHMryfxbFmaZWY2xt4yMm1sCf2J60w?usp=sharing
+
+```sh
+sui -V
+```
+
 ---
 
 # Sui モチベート
+
+### チェーン選定
 
 - 強力なコアチーム
   - github contributors
@@ -25,9 +83,7 @@ Presented by Umi Protocol & 3RD GEAR
 
 ---
 
-# Sui について
-
-好きなところ
+## 負けないチェーン
 
 - 高い生産性。
   - SuiMove言語
@@ -37,30 +93,58 @@ Presented by Umi Protocol & 3RD GEAR
   - 太いTPS 297,000 TPS
 - DAGベースのコンセンサスアルゴリズム
 
+- https://star-history.com/#MystenLabs/sui&aptos-labs/aptos-core&solana-labs/solana&paritytech/polkadot&ethereum-optimism/optimism&sei-protocol/sei-chain&cosmos/cosmos-sdk&Date
+- https://npmtrends.com/@mysten/sui.js-vs-avalanche
+
 ---
 
-# 環境構築
+## オブジェクトとモジュール
 
-## Install sui CLI
+- https://youtu.be/EG2-7bQNPv4?t=1105
+- https://github.com/move-language/move/blob/8f5303a365cf9da7554f8f18c393b3d6eb4867f2/language/documentation/tutorial/README.md#step-3-designing-my-basiccoin-module
 
-```sh
-curl https://sh.rustup.rs -sSf | sh
-cargo install suivm
-suivm install latest
+---
+
+## Sui Client
+
+1. ローカルのアカウント
+
 ```
+$ sui client
+Config file ["/Users/fuyutarow/.sui/sui_config/client.yaml"] doesn't exist, do you want to connect to a Sui Full node server [y/N]?y
+Sui Full node server URL (Defaults to Sui Devnet if not specified) : https://fullnode.testnet.sui.io:443
+Environment alias for [https://fullnode.testnet.sui.io:443] : testnet
+Select key scheme to generate keypair (0 for ed25519, 1 for secp256k1, 2: for secp256r1): 0
+```
+
+- devnetは週1回リセット
+- testnetはpermanent
+
+2. ウォレットのアカウント
+
+---
+
+# Sui Dev Resource
+
+- TS docs:
+  http://typescript-sdk-docs.s3-website-us-east-1.amazonaws.com/modules.html
+
+---
 
 ## VSCode
 
 ```json
 {
   "recommendations": [
-    "editorconfig.editorconfig",
+    // for sui
     "move.move-analyzer",
-    "bradlc.vscode-tailwindcss",
     "movebit.sui-move-analyzer",
     "damirka.move-syntax",
-    "shardulm94.trailing-spaces",
-    "gptutor.gptutor"
+    "gptutor.gptutor",
+    // utils
+    "editorconfig.editorconfig",
+    "bradlc.vscode-tailwindcss",
+    "shardulm94.trailing-spaces"
   ]
 }
 ```
@@ -69,18 +153,32 @@ suivm install latest
 
 ## Sui Ecosystem
 
-- ウォレット
+- ウォレット: Sui Wallet
   https://chrome.google.com/webstore/detail/sui-wallet/opcgpfmipidbgpenhmajoajpbobppdil?hl=j
 
 ---
 
-# (A) Hello
+# Suitter
+
+- https://github.com/umi-ag/suitter
+- https://suitter.pages.dev/
+
+```sh
+git clone https://github.com/umi-ag/suitter suitter
+cd $_
+```
+
+---
+
+## (A) Hello
 
 - ブロックチェーン上にデータを書き込む
 - 所有オブジェクト
 - unit test
 - パッケージ公開
 - sui exploerer
+
+- attributes: key, store, copy, drop
 
 ---
 
@@ -132,11 +230,9 @@ sui client publish --gas-budget=123456789
 
 ## 所有オブジェクト vs 共有オブジェクト
 
-所有されたオブジェクト（Owned Objects）:
-これらのオブジェクトは特定の所有者によってのみ変更できます。具体的には、所有者のアドレスによって所有されている場合、その所有者のアドレスによって署名されたトランザクションによってのみ使用できます。また、他のオブジェクトによって所有されている場合（子オブジェクトとも呼ばれます）、親オブジェクトの所有者が子オブジェクトにアクセスするトランザクションに署名する必要があります​1​。
+- 所有されたオブジェクト（Owned Objects）: 特定の所有者だけが変更可能
 
-共有オブジェクト（Shared Objects）:
-これらのオブジェクトは所有者がいないため、複数のユーザーによって変更することができます。Suiのスマートコントラクトによって定義されたアクセス制御メカニズムに従って、誰でもオブジェクトと対話したり、アクセスしたりすることができます。これらのオブジェクトは、読み書きをシーケンスするためのコンセンサスが必要であり、実行中に自分自身のアクセス制御を実装することができます​1​。
+- 共有オブジェクト（Shared Objects）: 複数のユーザーが変更可能。
 
 ---
 
@@ -174,7 +270,7 @@ https://suiexplorer.com/object/0xafd13b5cb40a2c92df0e0e0a510c6bbc9d7a65c4ffc5690
 
 ---
 
-## Dynamic Feild
+## Dynamic Field
 
 ---
 
@@ -210,7 +306,11 @@ MoveのグローバルストレージがオブジェクトIDによってキー�
 
 ---
 
-# (H) モジュール分割
+# 
+
+- モジュール分割
+- パッケージ分割
+- パッケージ分割
 
 ---
 
@@ -224,3 +324,9 @@ MoveのグローバルストレージがオブジェクトIDによってキー�
   - 全てのモジュールから呼び出し可能
 - public entry fun
   - 全てのモジュールおよびオフチェーンから呼び出し可能
+
+---
+
+# Sui Future
+
+- https://sui.io/intro-to-sui
