@@ -2,6 +2,7 @@ import { ObjectId, SuiAddress } from '@mysten/sui.js'
 
 type U64 = string
 
+/// Post型の定義
 export type SuitterPost = {
   id: ObjectId,
   text: String,

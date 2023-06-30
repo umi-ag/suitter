@@ -4,6 +4,10 @@ import { useWallet } from '@suiet/wallet-kit';
 import { useState } from 'react';
 import { moveCallCreatePost } from 'src/suitterLib/moveCall';
 
+/**
+ * ChatInput コンポーネント
+ * @returns 
+ */
 const ChatInput = () => {
   const { signAndExecuteTransactionBlock } = useWallet();
 
