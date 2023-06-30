@@ -10,18 +10,28 @@ import { SUITTER_PACKAGE_ID, SUITTER_RECENT_POSTS_OBJECT_ID } from 'src/config/c
 import { getRecentPostIdList, getRecentPostObjectList } from 'src/suitterLib/client';
 import { SuitterPost } from 'src/suitterLib/types';
 
-
+/**
+ * WalletConnectButton コンポーネント
+ * @returns 
+ */
 const WalletConnectButton = () => {
   return (
     <ConnectButton>Connect Wallet</ConnectButton>
   );
 };
 
-
+/**
+ * Pageコンポーネント
+ * @returns 
+ */
 const Page = () => {
   const [recentPostList, setRecentPostList] = useState<SuitterPost[]>([])
   const { account } = useWallet();
 
+  /**
+   * 左列用のコンポーネント
+   * @returns 
+   */
   const LeftPart = () => (
     <div className="w-1/4 p-4 text-white">
       <div className="font-bold text-lg mb-4">Suitter</div>
@@ -56,7 +66,11 @@ const Page = () => {
       </button>
     </div>
   )
-
+  
+  /**
+   * 中央列用のコンポーネント
+   * @returns 
+   */
   const CenterPart = () => (
     <div className="w-1/2 p-4 border-slate-600 border-x-[0.5px] flex flex-col h-screen">
       <div className="font-bold text-lg mb-4 text-white">Timeline</div>
@@ -76,6 +90,10 @@ const Page = () => {
     </div>
   )
 
+  /**
+   * 右列用のコンポーネント
+   * @returns 
+   */
   const RightPart = () => (
     <div className="w-1/4 p-4 text-white">
       <div className="font-bold text-lg mb-4">
