@@ -1,6 +1,10 @@
 import { ObjectId, SUI_CLOCK_OBJECT_ID, TransactionBlock } from '@mysten/sui.js';
 import { SUITTER_PACKAGE_ID, SUITTER_RECENT_POSTS_OBJECT_ID } from 'src/config/constants';
 
+/**
+ * 投稿を追加するためのメソッド
+ * @param props 
+ */
 export const moveCallCreatePost = async (props: {
   txb: TransactionBlock,
   text: string,
@@ -16,6 +20,10 @@ export const moveCallCreatePost = async (props: {
   });
 };
 
+/**
+ * いいねを追加するためのメソッド
+ * @param props
+ */
 export const moveCallLikePost = async (props: {
   txb: TransactionBlock,
   postId: ObjectId,

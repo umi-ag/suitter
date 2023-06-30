@@ -8,6 +8,10 @@ type Tweet = {
   avatarUrl: string
 }
 
+/**
+ * WalletConnectButton component
+ * @returns 
+ */
 const WalletConnectButton = () => {
   return (
     <button
@@ -19,16 +23,29 @@ const WalletConnectButton = () => {
   );
 };
 
-
+/**
+ * TweetCard Component
+ * @param props 
+ * @returns 
+ */
 const TweetCard = (props: Tweet) => {
-  const { username, tweetText, avatarUrl } = props
+  const { 
+    username, 
+    tweetText, 
+    avatarUrl 
+  } = props
 
   return (
     <div className="w-[100%] mx-auto bg-white rounded-xl shadow-md overflow-hidden">
       <div className="md:flex">
         <div className="md:flex-shrink-0">
           {/* <img className="h-48 w-full object-cover md:h-full md:w-48" src="https://umi.ag" alt="User avatar" /> */}
-          <img width={60} className="m-10 object-cover" src={avatarUrl} alt="User avatar" />
+          <img 
+            width={60} 
+            className="m-10 object-cover" 
+            src={avatarUrl} 
+            alt="User avatar" 
+          />
         </div>
 
         <div className="p-8">
@@ -54,6 +71,10 @@ const TweetCard = (props: Tweet) => {
   )
 }
 
+/**
+ * Page Component 
+ * @returns 
+ */
 const Page = () => {
   const data = [
     {

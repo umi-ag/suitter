@@ -1,3 +1,4 @@
+/// e_likes Contract
 module sandbox::e_likes {
     use std::string::{Self, String};
     use std::vector::{Self};

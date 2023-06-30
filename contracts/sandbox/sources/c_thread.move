@@ -1,3 +1,4 @@
+/// c_thread Contract
 module sandbox::c_thread {
     use std::string::{Self, String};
     use std::vector::{Self};
@@ -13,11 +14,13 @@ module sandbox::c_thread {
         text: String,
     }
 
+    /// thread struct
     struct Thread has key, store {
         id: UID,
         memo_list: vector<Memo>,
     }
 
+    /// create new thread
     public entry fun new_thread(
         ctx: &mut TxContext,
     ) {
