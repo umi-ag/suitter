@@ -14,7 +14,7 @@ import { shortenAddress } from 'src/utils/web3';
  * @returns 
  */
 export const PostCard = (props: {
-  post: SuitterPost,
+  post: SuitterPost
 }) => {
   const { signAndExecuteTransactionBlock } = useWallet();
 
@@ -33,7 +33,7 @@ export const PostCard = (props: {
     });
     console.log({ result })
     const url = `https://suiexplorer.com/txblock/${result.digest}?network=testnet`
-    console.log(url)
+    console.log(url);
   }
 
   /**
@@ -105,9 +105,7 @@ export const PostCard = (props: {
       </button>
       <SuiObjectLinkButton id={props.post.id} />
     </div>
-
   )
-
 
   return (
     <div className="w-[100%] border-slate-600 border-y-[0.5px] shadow-md overflow-hidden">

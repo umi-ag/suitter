@@ -2,7 +2,7 @@ import {
   ConnectButton, useWallet
 } from '@suiet/wallet-kit';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ChatInput from 'src/components/ChatInput';
 import { PostCard } from 'src/components/PostCard';
 import { SuiObjectLinkButton } from 'src/components/SuiObjectLinkButton';
@@ -27,6 +27,16 @@ const WalletConnectButton = () => {
 const Page = () => {
   const [recentPostList, setRecentPostList] = useState<SuitterPost[]>([])
   const { address } = useWallet();
+
+  /**
+   * 投稿内容を取得するためのメソッド
+   */
+  const getPosts = async () => {
+    const postIdList:any = await getRecentPostIdList()
+    const postList:any = await getRecentPostObjectList(postIdList)
+    console.log(postList)
+    setRecentPostList(postList)
+  }
 
   /**
    * 左列用のコンポーネント
@@ -55,12 +65,7 @@ const Page = () => {
         </span>
       </div>
       <button
-        onClick={async () => {
-          const postIdList:any = await getRecentPostIdList()
-          const postList:any = await getRecentPostObjectList(postIdList)
-          console.log(postList)
-          setRecentPostList(postList)
-        }}
+        onClick={getPosts}
       >
         get posts
       </button>
@@ -105,7 +110,11 @@ const Page = () => {
         </Link>
       </div>
     </div>
-  )
+  );
+
+  useEffect(() => {
+    getPosts();
+  },[])
 
   return (
     <main className="flex min-h-screen bg-slate-900">
