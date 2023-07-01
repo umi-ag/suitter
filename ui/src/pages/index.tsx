@@ -26,7 +26,7 @@ const WalletConnectButton = () => {
  */
 const Page = () => {
   const [recentPostList, setRecentPostList] = useState<SuitterPost[]>([])
-  const { account } = useWallet();
+  const { address } = useWallet();
 
   /**
    * 左列用のコンポーネント
@@ -39,7 +39,7 @@ const Page = () => {
       <div className="text-sm mb-4">
         <span className="flex items-center">
           USER
-          <SuiObjectLinkButton id={account!.address} />
+          <SuiObjectLinkButton id={address!} />
         </span>
       </div>
       <div className="text-sm mb-4">

@@ -1,7 +1,6 @@
 import { ObjectId, getObjectFields, getObjectId } from "@mysten/sui.js";
 import { SUITTER_RECENT_POSTS_OBJECT_ID } from "src/config/constants";
 import { providerSuiTestnet } from "src/config/sui";
-import { SuitterPost } from '../types';
 
 /**
  * 最新のPostオブジェクトのIDのリストを取得するメソッド
@@ -27,7 +26,7 @@ export const getRecentPostIdList = async (): Promise<ObjectId> => {
  */
 export const getRecentPostObjectList = async (
   postIdList: ObjectId[]
-): Promise<SuitterPost> => {
+): Promise<any> => {
   // オブジェクトIDに紐づくPostオブジェクトを一括で取得するためのメソッド
   const suiObjectList = await providerSuiTestnet().multiGetObjects({
     ids: postIdList,
@@ -37,10 +36,16 @@ export const getRecentPostObjectList = async (
     },
   });
   
-  return suiObjectList.map(obj => ({
-    ...getObjectFields(obj),
-    id:  getObjectId(obj),
-  }));
+  return suiObjectList.map(obj => (  
+    {
+      id:  getObjectId(obj),
+      text: getObjectFields(obj)?.text.toString(),
+      created_at: getObjectFields(obj)?.created_at.toString(),
+      author: getObjectFields(obj)?.author.toString(),
+      count_likes: getObjectFields(obj)?.count_likes.toString(),
+      count_replies: getObjectFields(obj)?.count_replies.toString(),
+    }
+  ));
 };
 
 export const creatPost = async (): Promise<ObjectId> => {
