@@ -36,19 +36,7 @@ const ChatInput = () => {
     setMessage(event.target.value);
   };
 
-  /**
-   * sendボタンを押した時の挙動！！
-   * @param event 
-   */
-  const handleKeyPress = async (event: any) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      // exctuteCreatePost メソッドの呼び出し
-      await exctuteCreatePost();
-      setMessage("");
-    }
-  };
-
+  
   return (
     <div className="flex items-center p-4 bg-gray-800 rounded-md">
       <input
@@ -59,7 +47,9 @@ const ChatInput = () => {
       />
       <button
         className="ml-4 text-white bg-blue-500 rounded-md px-4 py-2"
-        onClick={async () => {
+        onClick={async (event: any) => {
+          event.preventDefault();
+          // exctuteCreatePost メソッドの呼び出し
           await exctuteCreatePost();
           setMessage("");
         }}
