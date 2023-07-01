@@ -16,7 +16,7 @@ export const getRecentPostIdList = async (): Promise<ObjectId> => {
     },
   });
   // postsオブジェクトを配列で取得する。
-  const { posts: postIdList } = getObjectFields(suiObject);
+  const { posts: postIdList }:any = getObjectFields(suiObject);
   return postIdList
 };
 
@@ -51,6 +51,6 @@ export const creatPost = async (): Promise<ObjectId> => {
       showType: true,
     },
   });
-  const { posts: postIdList } = getObjectFields(suiObject);
+  const { posts: postIdList }:any = getObjectFields(suiObject);
   return postIdList
 };

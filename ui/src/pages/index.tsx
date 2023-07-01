@@ -39,7 +39,7 @@ const Page = () => {
       <div className="text-sm mb-4">
         <span className="flex items-center">
           USER
-          <SuiObjectLinkButton id={account?.address} />
+          <SuiObjectLinkButton id={account!.address} />
         </span>
       </div>
       <div className="text-sm mb-4">
@@ -56,8 +56,8 @@ const Page = () => {
       </div>
       <button
         onClick={async () => {
-          const postIdList = await getRecentPostIdList()
-          const postList = await getRecentPostObjectList(postIdList)
+          const postIdList:any = await getRecentPostIdList()
+          const postList:any = await getRecentPostObjectList(postIdList)
           console.log(postList)
           setRecentPostList(postList)
         }}
