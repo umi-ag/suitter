@@ -23,6 +23,7 @@ module sandbox::b_shared {
             text: string::utf8(b""),
         };
         let user_address = tx_context::sender(ctx);
+        /// share object
         transfer::public_share_object(memo);
     }
 

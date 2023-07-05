@@ -10,12 +10,14 @@ module sandbox::d_clocked {
     fun init(ctx: &mut TxContext) {
     }
 
+    /// wrapped store
     struct Post has store, drop {
         text: String,
         created_at: u64,
         author: address,
     }
 
+    /// top struct key-value
     struct Thread has key, store {
         id: UID,
         post_list: vector<Post>,

@@ -1,3 +1,4 @@
+/// profile Contract
 module suitter::profile {
     use std::string::{Self, String};
     use std::vector::{Self};
@@ -13,8 +14,9 @@ module suitter::profile {
     fun init(ctx: &mut TxContext) {
         // let profile_table = table::new<ID, ID>(ctx);
         // transfer::public_share_object(profile_table);
-    }
+    }   
 
+    /// Profile struct
     struct Profile has key, store {
         id: UID,
         biography: String,
@@ -23,7 +25,11 @@ module suitter::profile {
         created_at: u64,
     }
 
-    struct ProfileOwnerCap has key, store { id: UID, profile: ID }
+    /// ProfileOwnerCap Struct
+    struct ProfileOwnerCap has key, store { 
+        id: UID, 
+        profile: ID 
+    }
 
     fun followings_key(): String {
         string::utf8(b"followings")
@@ -37,6 +43,7 @@ module suitter::profile {
         string::utf8(b"posts")
     }
 
+    /// create new object
     public fun new(
         clock: &Clock,
         ctx: &mut TxContext,
@@ -69,6 +76,7 @@ module suitter::profile {
     ) {
         // assert_profile_owner(profile, profile_owner_cap);
 
+        /// update field
         let my_followings_list = df::borrow_mut(&mut my_profile.id, followings_key());
         vec_set::insert(my_followings_list, object::id(your_profile));
 

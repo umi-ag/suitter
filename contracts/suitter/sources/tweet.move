@@ -1,5 +1,5 @@
 
-
+/// tweet Contract
 module suitter::tweet {
     use sui::object::{Self, UID, ID};
     use sui::coin::{Self, Coin};
@@ -16,6 +16,7 @@ module suitter::tweet {
     use sui::clock::{Self, Clock};
 
     fun init(ctx: &mut sui::tx_context::TxContext) {
+        
     }
 
     fun post(

@@ -1,3 +1,4 @@
+/// a_hello contract
 module sandbox::a_hello {
     use std::string::{Self, String};
     use std::vector::{Self};
@@ -6,9 +7,12 @@ module sandbox::a_hello {
     use sui::transfer;
     use sui::tx_context::{Self, TxContext};
 
+    /// init method
     fun init(ctx: &mut TxContext) {
+
     }
 
+    /// Memo Struct
     struct Memo has key, store {
         id: UID,
         text: String,

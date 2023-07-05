@@ -1,4 +1,13 @@
-export const shortenAddress = (address: string, digits = 4): string => {
+/**
+ * アドレスを短く表示するためのメソッド
+ * @param address 
+ * @param digits 
+ * @returns 
+ */
+export const shortenAddress = (
+  address: string, 
+  digits = 4
+): string => {
   if (!address) return "";
   const len = address.length;
   const start = address.startsWith("0x") ? "0x" : "";
