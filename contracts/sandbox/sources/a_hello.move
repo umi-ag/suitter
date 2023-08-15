@@ -35,7 +35,6 @@ module sandbox::a_hello {
         ctx: &mut TxContext,
     ) {
         memo.text = string::utf8(text);
-        let user_address = tx_context::sender(ctx);
     }
 
     public entry fun write2_memo(
