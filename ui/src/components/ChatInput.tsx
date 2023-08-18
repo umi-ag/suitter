@@ -6,7 +6,7 @@ import { moveCallCreatePost } from 'src/suitterLib/moveCall';
 
 /**
  * ChatInput コンポーネント
- * @returns 
+ * @returns
  */
 const ChatInput = () => {
   const { signAndExecuteTransactionBlock } = useWallet();
@@ -17,12 +17,13 @@ const ChatInput = () => {
   const exctuteCreatePost = async () => {
     const txb = new TransactionBlock();
     // moveCallCreatePostメソッドを呼び出す
-    moveCallCreatePost({ 
-      txb, 
-      text: message 
+    moveCallCreatePost({
+      txb,
+      text: message
     });
-    
+
     const result = await signAndExecuteTransactionBlock({
+      // @ts-ignore
       transactionBlock: txb,
     });
     console.log({ result })
@@ -36,7 +37,7 @@ const ChatInput = () => {
     setMessage(event.target.value);
   };
 
-  
+
   return (
     <div className="flex items-center p-4 bg-gray-800 rounded-md">
       <input

@@ -4,7 +4,7 @@ import { providerSuiTestnet } from "src/config/sui";
 
 /**
  * 最新のPostオブジェクトのIDのリストを取得するメソッド
- * @returns 
+ * @returns
  */
 export const getRecentPostIdList = async (): Promise<ObjectId> => {
   const suiObject = await providerSuiTestnet().getObject({
@@ -22,7 +22,7 @@ export const getRecentPostIdList = async (): Promise<ObjectId> => {
 /**
  * 最新の投稿を配列で取得するためのメソッド
  * @param postIdList PostオブジェクトのIDリスト
- * @returns 
+ * @returns
  */
 export const getRecentPostObjectList = async (
   postIdList: ObjectId[]
@@ -35,8 +35,8 @@ export const getRecentPostObjectList = async (
       showType: true,
     },
   });
-  
-  return suiObjectList.map(obj => (  
+
+  return suiObjectList.map(obj => (
     {
       id:  getObjectId(obj),
       text: getObjectFields(obj)?.text.toString(),

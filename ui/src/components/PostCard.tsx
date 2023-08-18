@@ -10,8 +10,8 @@ import { shortenAddress } from 'src/utils/web3';
 
 /**
  * PostCard コンポーネント
- * @param props 
- * @returns 
+ * @param props
+ * @returns
  */
 export const PostCard = (props: {
   post: SuitterPost
@@ -23,12 +23,13 @@ export const PostCard = (props: {
    */
   const exctuteLikePost = async () => {
     const txb = new TransactionBlock();
-    moveCallLikePost({ 
-      txb, 
-      postId: props.post.id 
+    moveCallLikePost({
+      txb,
+      postId: props.post.id
     })
-    
+
     const result = await signAndExecuteTransactionBlock({
+      // @ts-ignore
       transactionBlock: txb,
     });
     console.log({ result })
@@ -38,16 +39,17 @@ export const PostCard = (props: {
 
   /**
    * リツイートするためのメソッド
-   * @returns 
+   * @returns
    */
   const exctuteRetweetPost = async () => {
     const txb = new TransactionBlock();
-    moveCallRetweetPost({ 
-      txb, 
-      postId: props.post.id 
+    moveCallRetweetPost({
+      txb,
+      postId: props.post.id
     })
 
     const result = await signAndExecuteTransactionBlock({
+      // @ts-ignore
       transactionBlock: txb,
     });
     console.log({ result })
@@ -57,7 +59,7 @@ export const PostCard = (props: {
 
   /**
    * ヘッダーコンポーネント
-   * @returns 
+   * @returns
    */
   const Header = () => (
     <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
@@ -68,7 +70,7 @@ export const PostCard = (props: {
 
   /**
    * Bodyコンポーネント
-   * @returns 
+   * @returns
    */
   const Body = () => (
     <p className="mt-2 text-gray-500">{props.post.text}</p>
@@ -76,11 +78,11 @@ export const PostCard = (props: {
 
   /**
    * フッター
-   * @returns 
+   * @returns
    */
   const Footer = () => (
     <div className="flex items-center gap-2">
-      <button 
+      <button
         className="text-blue-500 hover:text-blue-700"
         onClick={async () => {
           console.log(props.post);
@@ -112,7 +114,7 @@ export const PostCard = (props: {
       <div className="md:flex">
         <div className="md:flex-shrink-0">
           {/* <img className="h-48 w-full object-cover md:h-full md:w-48" src="https://umi.ag" alt="User avatar" /> */}
-          {/* <img width={60} className="m-10 object-cover" src={avatarUrl} alt="User avatar" /> */}
+          {/*<img width={60} className="m-10 object-cover" src={avatarUrl} alt="User avatar" /> */}
         </div>
 
         <div className="p-8">

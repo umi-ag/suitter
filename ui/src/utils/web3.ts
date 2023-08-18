@@ -1,11 +1,11 @@
 /**
  * アドレスを短く表示するためのメソッド
- * @param address 
- * @param digits 
- * @returns 
+ * @param address
+ * @param digits
+ * @returns
  */
 export const shortenAddress = (
-  address: string, 
+  address: string,
   digits = 4
 ): string => {
   if (!address) return "";

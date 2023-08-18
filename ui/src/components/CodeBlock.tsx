@@ -1,8 +1,8 @@
 
 /**
  * CodeBlock コンポーネント
- * @param param0 
- * @returns 
+ * @param param0
+ * @returns
  */
 export function CodeBlock({
   code

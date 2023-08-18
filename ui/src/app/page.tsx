@@ -1,3 +1,5 @@
+"use client"
+
 import {
   ConnectButton, useWallet
 } from '@suiet/wallet-kit';
@@ -12,7 +14,7 @@ import { SuitterPost } from 'src/suitterLib/types';
 
 /**
  * WalletConnectButton コンポーネント
- * @returns 
+ * @returns
  */
 const WalletConnectButton = () => {
   return (
@@ -22,7 +24,7 @@ const WalletConnectButton = () => {
 
 /**
  * Pageコンポーネント
- * @returns 
+ * @returns
  */
 const Page = () => {
   const [recentPostList, setRecentPostList] = useState<SuitterPost[]>([])
@@ -40,7 +42,7 @@ const Page = () => {
 
   /**
    * 左列用のコンポーネント
-   * @returns 
+   * @returns
    */
   const LeftPart = () => (
     <div className="w-1/4 p-4 text-white">
@@ -71,10 +73,10 @@ const Page = () => {
       </button>
     </div>
   )
-  
+
   /**
    * 中央列用のコンポーネント
-   * @returns 
+   * @returns
    */
   const CenterPart = () => (
     <div className="w-1/2 p-4 border-slate-600 border-x-[0.5px] flex flex-col h-screen">
@@ -97,7 +99,7 @@ const Page = () => {
 
   /**
    * 右列用のコンポーネント
-   * @returns 
+   * @returns
    */
   const RightPart = () => (
     <div className="w-1/4 p-4 text-white">
