@@ -1,18 +1,21 @@
 {
-  "trailing-spaces.trimOnSave": true,
+  "editor.formatOnSave": true,
   "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact",
+    "typescriptreact"
   ],
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true,
-    "source.fixAll.eslint": true,
+    "source.fixAll.eslint": true
   },
-  "javascript.preferences.quoteStyle": "single",
-  "typescript.preferences.quoteStyle": "single",
-  "files.associations": {
-    "*.scss": "postcss"
-  }
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "editor.tabSize": 2,
 }

@@ -1,28 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  runtime: 'edge',
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "*.arweave.net",
-      },
-    ],
-    domains: [
-      "ipfs.io",
-      "ipfs.filebase.io",
-      "ipfs.infura.io",
-      "nftstorage.link",
-      "aptoslabs.com",
-      "miro.medium.com",
-      "www.gitbook.com",
-      "raw.githubusercontent.com",
-    ],
+    domains: ['images.microcms-assets.io'],
   },
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false, path: false };
-    return config;
+  experimental: {
+    appDir: true,
   },
 };
 
-module.exports = nextConfig;
+module.exports = nextConfig

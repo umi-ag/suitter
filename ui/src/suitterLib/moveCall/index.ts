@@ -3,7 +3,7 @@ import { SUITTER_PACKAGE_ID, SUITTER_RECENT_POSTS_OBJECT_ID } from 'src/config/c
 
 /**
  * 投稿を追加するためのメソッド
- * @param props 
+ * @param props
  */
 export const moveCallCreatePost = async (props: {
   txb: TransactionBlock,
